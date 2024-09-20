@@ -1,0 +1,11 @@
+version: "3"
+services:
+  whisper:
+    hostname: whisper
+    build:
+      context: ./whisper
+      dockerfile: Dockerfile
+    volumes:
+      - ./out:/var/tmp/out
+    restart: always
+    tty: true
