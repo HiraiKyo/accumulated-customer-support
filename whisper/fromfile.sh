@@ -1,5 +1,5 @@
 # 指定拡張子のファイルがあるか
-for _audio_file in ./*.{wav,WAV,aiff,AIFF,aac,AAC,mp3,MP3}; do
+for _audio_file in /var/tmp/in/*.{wav,WAV,aiff,AIFF,aac,AAC,mp3,MP3}; do
 
     # 指定拡張子がない場合は、以下の処理を行わない
     [ -f "$_audio_file" ] || continue

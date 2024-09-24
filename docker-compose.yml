@@ -6,6 +6,7 @@ services:
       context: ./whisper
       dockerfile: Dockerfile
     volumes:
+      - ./in:/var/tmp/in
       - ./out:/var/tmp/out
     restart: always
     tty: true
