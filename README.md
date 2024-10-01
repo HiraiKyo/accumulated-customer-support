@@ -19,17 +19,31 @@ pip install -r recorder/requirements.txt
 
 ## Run
 
-### Place audio file
+```sh
+./main.py
+```
+
+
+## Development
+### Test Audio Recorder (Pyaudio)
+#### Run python
+
+```sh
+python recorder/main.py
+```
+
+### Test Whisper.cpp
+#### Place audio file
 
 Place audio file in `in` directory.
 
-### Run whisper.cpp
+#### Run whisper.cpp
 
 ```sh
 docker compose up
 docker compose exec whisper bash -c "./fromfile.sh"
 ```
 
-### Open text files.
+#### Open text files.
 
 Open .txt files in `out` directory.
