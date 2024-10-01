@@ -7,7 +7,8 @@ CHUNK = 2**10
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
-FILENAME="record.wav"
+FILENAME="record"
+EXT="wav"
 OUTDIR="../in"
 
 class AudioRecorder:
@@ -25,17 +26,17 @@ class AudioRecorder:
         # TODO: streaming to whisper.cpp by StreamSocket
         pass
 
-    def write_to_file(self):
+    def write_to_file(self, dir, filename):
         if len(self.frames) == 0:
             print("Recorded chunks missing, failed to output.")
-
-        wf = wave.open(f"{OUTDIR}/{FILENAME}", "wb")
+        wf = wave.open(f"{dir}/{filename}.{EXT}", "wb")
         wf.setnchannels(CHANNELS)
         wf.setsampwidth(self.p.get_sample_size(FORMAT))
         wf.setframerate(RATE)
         wf.writeframes(b"".join(self.frames))
         wf.close()
-        print(f"File saved successfully at {OUTDIR}/{FILENAME}")
+        print(f"File saved successfully at {dir}/{filename}.{EXT}")
+        return f"{filename}.{EXT}"
 
     def start_recording(self):
         self.stream = self.p.open(
@@ -55,7 +56,6 @@ class AudioRecorder:
         self.stream.close()
         self.is_recording = False
         self.p.terminate()
-        self.write_to_file()
 
 if __name__ == "__main__":
     recorder = AudioRecorder()
@@ -70,3 +70,4 @@ if __name__ == "__main__":
         print(e)
     finally:
         recorder.stop_recording()
+        recorder.write_to_file(OUTDIR, FILENAME)

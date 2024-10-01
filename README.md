@@ -2,6 +2,21 @@
 
 AI customer support system with STT, and auto-generated documentation based on collected support history.
 
+## Install
+
+### Create Containers
+
+```sh
+docker compose up --build
+```
+
+### Install Audio Recorder
+
+```sh
+sudo apt install portaudio19-dev
+pip install -r recorder/requirements.txt
+```
+
 ## Run
 
 ### Place audio file

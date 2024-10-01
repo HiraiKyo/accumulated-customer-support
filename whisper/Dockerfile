@@ -23,8 +23,6 @@ WORKDIR /usr/src/app/whisper.cpp
 
 # モデルダウンロード
 RUN bash ./models/download-ggml-model.sh small
+RUN make CFLAGS="-DGGML_USE_OPENBLAS -march=x86-64 -mtune=generic" OPENBLAS=1
 
 COPY ./* .
-RUN pip install -r requirements.txt
-
-RUN make CFLAGS="-DGGML_USE_OPENBLAS -march=x86-64 -mtune=generic" OPENBLAS=1
