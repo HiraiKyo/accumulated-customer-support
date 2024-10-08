@@ -17,12 +17,17 @@ sudo apt install portaudio19-dev
 pip install -r recorder/requirements.txt
 ```
 
+### Classification
+
+```sh
+pip install -r classify/requirements.txt
+```
+
 ## Run
 
 ```sh
 ./main.py
 ```
-
 
 ## Development
 ### Test Audio Recorder (Pyaudio)
@@ -47,3 +52,14 @@ docker compose exec whisper bash -c "./fromfile.sh"
 #### Open text files.
 
 Open .txt files in `out` directory.
+
+### Test Classification
+```sh
+cd classify
+python trainer.py
+python main.py
+```
+
+#### Test another input
+1. Open `main.py`
+2. Modify `test_report`
