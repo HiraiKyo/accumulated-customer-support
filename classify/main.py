@@ -107,13 +107,17 @@ if __name__ == "__main__":
         print(f"予測されたカテゴリ: {result['predicted_class']}")
         print(f"信頼度: {result['confidence']:.4f}")
         print("\nすべてのカテゴリの確率:")
+        print_string = "  "
         for category, prob in sorted(result['class_probabilities'].items(), key=lambda x: x[1], reverse=True):
-            print(f"  {category}: {prob:.4f}")
+            print_string += f"{category}: {prob:.4f}, "
+        print(print_string)
 
         print("\nトークン化されたテキスト:")
+        print_string = "  "
         for token, weight in zip(result['tokens'], result['attention_weights']):
             if token != '[PAD]':
-                print(f"  {token}: {weight:.4f}")
+                print_string += f"{token}: {weight:.4f}, "
+        print(print_string)
 
         predictions.append(result['predicted_class'])
         true_labels.append(report['category'])
