@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # mypy: ignore-errors
+import argparse
 import torch
 from trainer import load_model
 from sklearn.metrics import classification_report
@@ -93,6 +94,19 @@ test_reports = [
     {"text": "プリンターの給紙ローラーが動かず、用紙を吸い込みません。", "category": "ハードウェア障害"}
 ]
 
+test_reports2 = [
+    {"text": "タイムアウトエラー。ロボットがバケット上で止まった。", "category": ""},
+    {"text": "撮影できない。タイムアウトエラー。", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+    {"text": "", "category": ""},
+]
 if __name__ == "__main__":
     # モデルをロード
     model, tokenizer, config = load_model(True)
@@ -100,7 +114,15 @@ if __name__ == "__main__":
     predictions = []
     true_labels = []
 
-    for report in test_reports:
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("--textfile", type=str, help="入力テキストファイル")
+
+    reports = test_reports
+    if argparser.parse_args().textfile:
+        with open(argparser.parse_args().textfile, "r") as f:
+            reports = [{"text": line.strip(), "category": ""} for line in f.readlines()]
+
+    for report in reports:
         result = classify_text(model, tokenizer, report["text"], config)
         print()
         print(f"入力テキスト: {result['text']}")
