@@ -1,0 +1,3 @@
+git+https://github.com/SYSTRAN/faster-whisper.git@d57c5b40b06e59ec44240d93485a95799548af50
+torch
+numpy

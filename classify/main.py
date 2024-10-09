@@ -94,19 +94,7 @@ test_reports = [
     {"text": "プリンターの給紙ローラーが動かず、用紙を吸い込みません。", "category": "ハードウェア障害"}
 ]
 
-test_reports2 = [
-    {"text": "タイムアウトエラー。ロボットがバケット上で止まった。", "category": ""},
-    {"text": "撮影できない。タイムアウトエラー。", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-    {"text": "", "category": ""},
-]
+
 if __name__ == "__main__":
     # モデルをロード
     model, tokenizer, config = load_model(True)

@@ -3,10 +3,14 @@ services:
   whisper:
     hostname: whisper
     build:
-      context: ./whisper
+      context: ./faster-whisper
       dockerfile: Dockerfile
     volumes:
       - ./in:/var/tmp/in
       - ./out:/var/tmp/out
+      - whisper_models:/var/tmp/models
     restart: always
     tty: true
+
+volumes:
+  whisper_models:

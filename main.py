@@ -71,14 +71,14 @@ def exec_whisper():
     try:
         exec_command = f"/bin/bash ./fromexactfile.sh {input_file} {output_file}"
         print("STT starting...")
-        exec_result = container.exec_run(exec_command)
+        exec_result = container.exec_run(exec_command, stream=True)
         for output in exec_result.output:
             write_whisper_log(output.decode().strip())
         exit_code = exec_result.exit_code
         if exit_code != 0:
             print(f"Error executing command in container. Exit code: {exit_code}")
             return False
-        print("Whisper script execution completed.")
+        print("Whisper script execution has completed.")
         return True
     except Exception as e:
         print(f"An error occurred while trying to execute the command in the container: {e}")

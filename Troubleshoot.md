@@ -19,3 +19,8 @@ pactl info
 pactl list short sinks
 pactl list short sources
 ```
+
+## faster_whisper v1.0.3にバッチモデルが入ってない
+
+このコミットからpip installする事で対応
+https://github.com/SYSTRAN/faster-whisper/commit/d57c5b40b06e59ec44240d93485a95799548af50
